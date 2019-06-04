@@ -16,16 +16,16 @@ public class KafkaConsumer1 {
 	public static void main(String[] args) {
 		Properties props = new Properties();
 
-		props.put("bootstrap.servers", "dev-jb-kk001-ncl:9092,dev-jb-kk002-ncl:9092,dev-jb-kk003-ncl:9092");
+		props.put("bootstrap.servers", "dev-neo-kk01-ncl:9092,dev-neo-kk02-ncl:9092,dev-neo-kk03-ncl:9092");
 		props.put("group.id", "jb-consumer");
 		props.put("enable.auto.commit", true); // background 에서 주기적으로 offset 을 commit 한다.
 		props.put("auto.offset.reset", "latest"); // offset 이 존재하지 않을 경우 어디서 가져올 것인가
 		props.put("key.deserializer", StringDeserializer.class.getName());
 		props.put("value.deserializer", StringDeserializer.class.getName());
 
-		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
+		KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 
-		consumer.subscribe(Arrays.asList("jb-pub-topic"));
+		consumer.subscribe(Arrays.asList("neo-topic"));
 
 		try {
 			while (true) {

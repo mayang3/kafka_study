@@ -14,7 +14,7 @@ public class KafkaConsumerManual {
 	public static void main(String[] args) {
 		Properties props = new Properties();
 
-		props.put("bootstrap.servers", "dev-jb-kk001-ncl:9092,dev-jb-kk002-ncl:9092,dev-jb-kk003-ncl:9092");
+		props.put("bootstrap.servers", "dev-neo-kk01-ncl:9092,dev-neo-kk02-ncl:9092,dev-neo-kk03-ncl:9092");
 		props.put("group.id", "jb-manual");
 		props.put("enable.auto.commit", "false"); // 최초 자동 커밋을 끄게끔 설정해두고
 		props.put("auto.offset.reset", "latest");
@@ -23,7 +23,7 @@ public class KafkaConsumerManual {
 
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 
-		consumer.subscribe(Arrays.asList("jb-pub-topic"));
+		consumer.subscribe(Arrays.asList("neo-topic"));
 
 		try {
 
